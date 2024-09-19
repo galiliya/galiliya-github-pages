@@ -1,3 +1,52 @@
-author: galiliya  
-theme: minima 
-paginate: 5 
+
+### 3. **_config.yml 配置文件设计**
+
+这是一个为个人博客配置的 `_config.yml` 文件，包含基本的站点配置、主题、分页、作者信息等。
+
+```yaml
+# 网站基础配置
+title: "Galiliya's Blog"
+description: "记录前端开发经验和动漫推荐的个人博客"
+author: galiliya
+email: galiliya@example.com
+url: "https://galiliya.github.io"
+baseurl: "" # 如果部署在子目录中，如 '/blog'，请填写 '/blog'
+
+# 主题配置
+theme: minima # 使用 Jekyll 的默认主题 Minima
+
+# 博客分页配置
+paginate: 5 # 每页显示 5 篇文章
+paginate_path: "/page:num/"
+
+# 博客元数据
+markdown: kramdown # 使用 Kramdown 来解析 Markdown
+plugins:
+  - jekyll-paginate # 分页插件
+
+# 博客社交信息
+social_links:
+  github: https://github.com/galiliya
+  email: mailto:galiliya@example.com
+
+# 语言和时间
+lang: zh-CN
+timezone: Asia/Shanghai
+
+# 自定义导航栏
+header_pages:
+  - index.md
+  - about.md
+  - categories.md
+
+# 默认布局
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Galiliya"
+
+# SEO 及其他扩展
+permalink: /:categories/:year/:month/:day/:title/
