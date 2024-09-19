@@ -1,2 +1,7 @@
-theme: minima
-author:galiliya
+title: Galiliya的个人博客  
+description: > 
+  这是一个分享博客。
+author: galiliya  
+theme: minima 
+markdown: kramdown 
+paginate: 5 
