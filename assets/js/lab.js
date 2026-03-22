@@ -326,11 +326,22 @@
         block.x -= block.speed * delta;
       });
       state.lines.forEach((line) => {
-        line.progress += line.speed * delta;
+        if (line.phase === "warning") {
+          line.warningLeft -= delta;
+          if (line.warningLeft <= 0) {
+            line.phase = "active";
+            line.progress = -0.12;
+          }
+        } else {
+          line.progress += line.speed * delta;
+        }
       });
 
       state.blocks = state.blocks.filter((block) => block.x + block.w > -20);
-      state.lines = state.lines.filter((line) => line.progress < 1.2);
+      state.lines = state.lines.filter((line) => {
+        if (line.phase === "warning") return true;
+        return line.progress < 1.2;
+      });
     }
 
     function spawnBlock() {
@@ -349,8 +360,10 @@
       state.lines.push({
         y: random(20, canvas.height - 20),
         thickness: random(4, 7),
-        speed: 1.4 + state.stage * 0.14,
-        progress: 0
+        speed: 0.82 + state.stage * 0.08,
+        progress: -0.12,
+        phase: "warning",
+        warningLeft: Math.max(0.9, 1.15 - state.stage * 0.03)
       });
     }
 
@@ -367,6 +380,7 @@
       }
 
       for (const line of state.lines) {
+        if (line.phase !== "active") continue;
         const headX = canvas.width * line.progress;
         if (headX > 0 && headX < canvas.width) {
           const withinX = Math.abs(state.player.x - headX) < 10;
@@ -402,6 +416,19 @@
       drawGrid();
 
       state.lines.forEach((line) => {
+        if (line.phase === "warning") {
+          const alpha = 0.2 + (Math.sin(state.elapsed * 10) + 1) * 0.12;
+          ctx.strokeStyle = `rgba(215, 72, 72, ${alpha.toFixed(3)})`;
+          ctx.lineWidth = 2;
+          ctx.setLineDash([8, 8]);
+          ctx.beginPath();
+          ctx.moveTo(0, line.y);
+          ctx.lineTo(canvas.width, line.y);
+          ctx.stroke();
+          ctx.setLineDash([]);
+          return;
+        }
+
         const headX = canvas.width * line.progress;
         const tailX = headX - 120;
         const lg = ctx.createLinearGradient(tailX, 0, headX, 0);
