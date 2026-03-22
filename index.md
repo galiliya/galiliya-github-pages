@@ -55,6 +55,16 @@ articles:
     summary: "好的 AI 界面要能暴露系统状态、降低不确定性，并在系统出错时帮助用户恢复。"
   - title: "全栈交付不是把前后端都写了，而是知道取舍在哪里"
     summary: "真实交付里，页面设计、接口约束和开发节奏会互相牵制，真正重要的是判断力。"
+lab_previews:
+  - title: "RAG 命中测试"
+    summary: "给定问题和候选检索结果，选最合理的召回项。"
+    meta: "偏检索判断"
+  - title: "Prompt Debug"
+    summary: "看一段有问题的提示词或 agent 配置，找出最容易出错的地方。"
+    meta: "偏排错"
+  - title: "Workflow Runner"
+    summary: "让请求沿着更合理的链路走到输出，像一个轻量流程闯关。"
+    meta: "偏流程判断"
 capabilities:
   - title: "AI 智能体"
     copy: "更关注有状态、有工具、有边界的智能体工作流，而不是只把模型接进产品里。"

@@ -100,6 +100,36 @@ layout: default
   </div>
 </section>
 
+<section class="section section-lab" id="lab">
+  <div class="shell-inner">
+    <div class="section-head">
+      <p class="eyebrow">Lab</p>
+      <h2>一些更轻量的交互实验，围绕 RAG、Agent 和工程判断</h2>
+      <p>不把它做成游戏站，而是当作主页里的小实验室。更轻一点，但仍然和现在的技术方向有关系。</p>
+    </div>
+
+    <div class="lab-preview-grid">
+      {% for item in page.lab_previews %}
+        <article class="lab-preview-card">
+          <p class="project-index">0{{ forloop.index }}</p>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.summary }}</p>
+          <span class="lab-preview-meta">{{ item.meta }}</span>
+        </article>
+      {% endfor %}
+    </div>
+
+    <div class="lab-entry">
+      <div>
+        <p class="eyebrow">Lab 入口</p>
+        <h3>先做成小而完整的技术彩蛋</h3>
+        <p>当前包含 3 个轻量互动，支持本地记录成绩和完成情况。后面如果你想扩展，可以继续往里加更多实验。</p>
+      </div>
+      <a class="button button-primary" href="{{ '/lab/' | relative_url }}">进入 Lab</a>
+    </div>
+  </div>
+</section>
+
 <section class="section section-capabilities">
   <div class="shell-inner">
     <div class="section-head">
