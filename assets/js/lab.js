@@ -301,20 +301,8 @@
     }
 
     function movePlayer(delta) {
-      const dx = state.pointer.x - state.player.x;
-      const dy = state.pointer.y - state.player.y;
-      const distance = Math.hypot(dx, dy);
-      const followSpeed = 520;
-
-      if (distance > 0.1) {
-        const step = Math.max(distance * 0.42, followSpeed * delta);
-        const ratio = Math.min(1, step / distance);
-        state.player.x += dx * ratio;
-        state.player.y += dy * ratio;
-      }
-
-      state.player.x = clamp(state.player.x, 16, canvas.width - 16);
-      state.player.y = clamp(state.player.y, 16, canvas.height - 16);
+      state.player.x = clamp(state.pointer.x, 16, canvas.width - 16);
+      state.player.y = clamp(state.pointer.y, 16, canvas.height - 16);
     }
 
     function updateHazards(delta) {
