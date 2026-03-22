@@ -1,0 +1,114 @@
+---
+layout: default
+---
+<section class="hero-section">
+  <div class="shell-inner hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">AI-native engineer portfolio</p>
+      <h1>{{ page.hero_title }}</h1>
+      <p class="hero-lead">{{ page.hero_lead }}</p>
+
+      <div class="hero-tags">
+        {% for tag in page.hero_tags %}
+          <span>{{ tag }}</span>
+        {% endfor %}
+      </div>
+
+      <div class="hero-actions">
+        <a class="button button-primary" href="#projects">Selected Projects</a>
+        <a class="button button-secondary" href="#writing">Technical Writing</a>
+      </div>
+    </div>
+
+    <aside class="hero-panel">
+      <p class="panel-label">Current Focus</p>
+      <ul>
+        {% for item in page.current_focus %}
+          <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+      <p class="panel-note">Focused on shipping AI-facing products with clear UX, practical system boundaries, and end-to-end delivery awareness.</p>
+    </aside>
+  </div>
+</section>
+
+<section class="section section-projects" id="projects">
+  <div class="shell-inner">
+    <div class="section-head">
+      <p class="eyebrow">Selected Projects</p>
+      <h2>Projects that signal implementation ability</h2>
+      <p>Project descriptions are framed for interview readability: what was built, what mattered technically, and what kind of engineering judgment it reflects.</p>
+    </div>
+
+    <div class="project-grid">
+      {% for project in page.projects %}
+        <article class="project-card">
+          <p class="project-index">0{{ forloop.index }}</p>
+          <h3>{{ project.title }}</h3>
+          <p class="project-summary">{{ project.summary }}</p>
+          <ul class="project-points">
+            {% for point in project.points %}
+              <li>{{ point }}</li>
+            {% endfor %}
+          </ul>
+          <div class="tag-row">
+            {% for tag in project.tags %}
+              <span>{{ tag }}</span>
+            {% endfor %}
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section-writing" id="writing">
+  <div class="shell-inner two-column">
+    <div class="section-head compact">
+      <p class="eyebrow">Writing</p>
+      <h2>Technical essays with engineering judgment</h2>
+      <p>These topics are meant to feel closer to system thinking and product tradeoffs than to beginner tutorial lists.</p>
+    </div>
+
+    <div class="essay-list">
+      {% for article in page.articles %}
+        <article class="essay-card">
+          <h3>{{ article.title }}</h3>
+          <p>{{ article.summary }}</p>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section-capabilities">
+  <div class="shell-inner">
+    <div class="section-head">
+      <p class="eyebrow">Capabilities</p>
+      <h2>Strengths described as delivery ability, not tool dumping</h2>
+    </div>
+
+    <div class="capability-grid">
+      {% for capability in page.capabilities %}
+        <article class="capability-card">
+          <h3>{{ capability.title }}</h3>
+          <p>{{ capability.copy }}</p>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section-about">
+  <div class="shell-inner about-panel">
+    <div>
+      <p class="eyebrow">About</p>
+      <h2>Engineering profile, kept grounded</h2>
+      <p>{{ page.about_summary }}</p>
+    </div>
+    <div class="about-links">
+      <a class="button button-secondary" href="{{ '/about.html' | relative_url }}">More About Me</a>
+      <a class="button button-secondary" href="https://github.com/galiliya">View GitHub</a>
+    </div>
+  </div>
+</section>
