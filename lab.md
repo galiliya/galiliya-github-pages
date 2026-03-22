@@ -91,3 +91,31 @@ scripts:
     </article>
   </div>
 </section>
+
+<section class="section">
+  <div class="shell-inner">
+    <article class="content-card trace-card" id="trace-dodger">
+      <div class="trace-copy">
+        <p class="eyebrow">04 / Trace Dodger</p>
+        <h2>在噪声和异常线之间活下来</h2>
+        <p class="lab-intro">鼠标移动控制节点，避开噪声块和扫描线。每存活一段时间就进入下一阶段，速度和压力都会上升。</p>
+        <div class="trace-stats">
+          <span id="trace-stage">阶段 1</span>
+          <span id="trace-time">存活 0.0s</span>
+          <span id="trace-record">最佳阶段 1 / 0.0s</span>
+        </div>
+        <div class="trace-actions">
+          <button class="button button-primary" type="button" id="trace-start">开始运行</button>
+          <button class="button button-secondary" type="button" id="trace-reset">重置</button>
+        </div>
+        <p class="lab-feedback" id="trace-feedback">准备好后点击开始，把节点留在安全区域内。</p>
+      </div>
+
+      <div class="trace-stage-wrap">
+        <div class="trace-stage-panel">
+          <canvas id="trace-canvas" width="720" height="360" aria-label="Trace Dodger 游戏画布"></canvas>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>

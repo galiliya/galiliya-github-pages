@@ -1,6 +1,6 @@
 (function () {
   const storageKey = "galiliya-lab-records";
-  const defaultRecords = { rag: 0, prompt: 0, workflow: 0 };
+  const defaultRecords = { rag: 0, prompt: 0, workflow: 0, traceStage: 1, traceTime: 0 };
 
   const records = loadRecords();
 
@@ -130,6 +130,7 @@
     text("rag-record", `最佳 ${records.rag}`);
     text("prompt-record", `最佳 ${records.prompt}`);
     text("workflow-record", `最佳 ${records.workflow}`);
+    text("trace-record", `最佳阶段 ${records.traceStage} / ${records.traceTime.toFixed(1)}s`);
   }
 
   function text(id, value) {
@@ -220,4 +221,284 @@
       if (kind === "workflow") resetQuiz("workflow", workflowBank, workflowLabels);
     });
   });
+
+  initTraceDodger();
+
+  function initTraceDodger() {
+    const canvas = document.getElementById("trace-canvas");
+    const startButton = document.getElementById("trace-start");
+    const resetButton = document.getElementById("trace-reset");
+    const feedback = document.getElementById("trace-feedback");
+    const stageLabel = document.getElementById("trace-stage");
+    const timeLabel = document.getElementById("trace-time");
+
+    if (!canvas || !startButton || !resetButton) return;
+
+    const ctx = canvas.getContext("2d");
+    const state = {
+      running: false,
+      animationId: 0,
+      lastFrame: 0,
+      elapsed: 0,
+      stage: 1,
+      player: { x: canvas.width * 0.2, y: canvas.height * 0.5, radius: 10 },
+      pointer: { x: canvas.width * 0.2, y: canvas.height * 0.5 },
+      blocks: [],
+      lines: [],
+      spawnTimer: 0,
+      lineTimer: 0
+    };
+
+    function resetTrace(keepMessage) {
+      cancelAnimationFrame(state.animationId);
+      state.running = false;
+      state.lastFrame = 0;
+      state.elapsed = 0;
+      state.stage = 1;
+      state.player.x = canvas.width * 0.2;
+      state.player.y = canvas.height * 0.5;
+      state.pointer.x = state.player.x;
+      state.pointer.y = state.player.y;
+      state.blocks = [];
+      state.lines = [];
+      state.spawnTimer = 0;
+      state.lineTimer = 0;
+      stageLabel.textContent = "阶段 1";
+      timeLabel.textContent = "存活 0.0s";
+      if (!keepMessage) {
+        feedback.textContent = "准备好后点击开始，把节点留在安全区域内。";
+        feedback.className = "lab-feedback";
+      }
+      drawTrace();
+    }
+
+    function startTrace() {
+      resetTrace(true);
+      state.running = true;
+      feedback.textContent = "运行中：跟随鼠标移动，避开异常噪声和扫描线。";
+      feedback.className = "lab-feedback";
+      state.animationId = requestAnimationFrame(loop);
+    }
+
+    function loop(timestamp) {
+      if (!state.running) return;
+      if (!state.lastFrame) state.lastFrame = timestamp;
+      const delta = Math.min((timestamp - state.lastFrame) / 1000, 0.032);
+      state.lastFrame = timestamp;
+      state.elapsed += delta;
+      state.stage = Math.max(1, Math.floor(state.elapsed / 8) + 1);
+      stageLabel.textContent = `阶段 ${state.stage}`;
+      timeLabel.textContent = `存活 ${state.elapsed.toFixed(1)}s`;
+
+      movePlayer(delta);
+      updateHazards(delta);
+      if (checkCollision()) {
+        endTrace();
+        return;
+      }
+      drawTrace();
+      state.animationId = requestAnimationFrame(loop);
+    }
+
+    function movePlayer(delta) {
+      const ease = Math.min(1, 3.2 * delta);
+      state.player.x += (state.pointer.x - state.player.x) * ease;
+      state.player.y += (state.pointer.y - state.player.y) * ease;
+      state.player.x = clamp(state.player.x, 16, canvas.width - 16);
+      state.player.y = clamp(state.player.y, 16, canvas.height - 16);
+    }
+
+    function updateHazards(delta) {
+      state.spawnTimer += delta;
+      state.lineTimer += delta;
+
+      const blockInterval = Math.max(0.45, 1.15 - state.stage * 0.08);
+      const lineInterval = Math.max(1.05, 2.2 - state.stage * 0.1);
+
+      if (state.spawnTimer >= blockInterval) {
+        state.spawnTimer = 0;
+        spawnBlock();
+      }
+
+      if (state.lineTimer >= lineInterval) {
+        state.lineTimer = 0;
+        spawnLine();
+      }
+
+      state.blocks.forEach((block) => {
+        block.x -= block.speed * delta;
+      });
+      state.lines.forEach((line) => {
+        line.progress += line.speed * delta;
+      });
+
+      state.blocks = state.blocks.filter((block) => block.x + block.w > -20);
+      state.lines = state.lines.filter((line) => line.progress < 1.2);
+    }
+
+    function spawnBlock() {
+      const h = random(26, 66);
+      const w = random(24, 72);
+      state.blocks.push({
+        x: canvas.width + w,
+        y: random(8, canvas.height - h - 8),
+        w,
+        h,
+        speed: 140 + state.stage * 26 + random(0, 24)
+      });
+    }
+
+    function spawnLine() {
+      state.lines.push({
+        y: random(20, canvas.height - 20),
+        thickness: random(4, 7),
+        speed: 1.4 + state.stage * 0.14,
+        progress: 0
+      });
+    }
+
+    function checkCollision() {
+      for (const block of state.blocks) {
+        if (
+          state.player.x + state.player.radius > block.x &&
+          state.player.x - state.player.radius < block.x + block.w &&
+          state.player.y + state.player.radius > block.y &&
+          state.player.y - state.player.radius < block.y + block.h
+        ) {
+          return true;
+        }
+      }
+
+      for (const line of state.lines) {
+        const headX = canvas.width * line.progress;
+        if (headX > 0 && headX < canvas.width) {
+          const withinX = Math.abs(state.player.x - headX) < 10;
+          const withinY = Math.abs(state.player.y - line.y) < 14;
+          if (withinX && withinY) return true;
+        }
+      }
+
+      return false;
+    }
+
+    function endTrace() {
+      state.running = false;
+      cancelAnimationFrame(state.animationId);
+      records.traceStage = Math.max(records.traceStage, state.stage);
+      records.traceTime = Math.max(records.traceTime, state.elapsed);
+      saveRecords();
+      updateRecordLabels();
+      feedback.textContent = `已中断。你到达了阶段 ${state.stage}，存活 ${state.elapsed.toFixed(1)} 秒。`;
+      feedback.className = "lab-feedback is-error";
+      drawTrace(true);
+    }
+
+    function drawTrace(failed) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      gradient.addColorStop(0, "rgba(255,255,255,0.96)");
+      gradient.addColorStop(1, "rgba(223,240,236,0.95)");
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      drawGrid();
+
+      state.lines.forEach((line) => {
+        const headX = canvas.width * line.progress;
+        const tailX = headX - 120;
+        const lg = ctx.createLinearGradient(tailX, 0, headX, 0);
+        lg.addColorStop(0, "rgba(215, 72, 72, 0)");
+        lg.addColorStop(1, "rgba(215, 72, 72, 0.78)");
+        ctx.strokeStyle = lg;
+        ctx.lineWidth = line.thickness;
+        ctx.beginPath();
+        ctx.moveTo(tailX, line.y);
+        ctx.lineTo(headX, line.y);
+        ctx.stroke();
+      });
+
+      state.blocks.forEach((block) => {
+        ctx.fillStyle = "rgba(160, 75, 45, 0.16)";
+        ctx.strokeStyle = "rgba(160, 75, 45, 0.24)";
+        ctx.lineWidth = 1.5;
+        roundRect(ctx, block.x, block.y, block.w, block.h, 10, true, true);
+      });
+
+      ctx.beginPath();
+      ctx.fillStyle = failed ? "#a04b2d" : "#0b766e";
+      ctx.shadowColor = failed ? "rgba(160,75,45,0.28)" : "rgba(11,118,110,0.26)";
+      ctx.shadowBlur = 18;
+      ctx.arc(state.player.x, state.player.y, state.player.radius, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+
+      ctx.beginPath();
+      ctx.strokeStyle = "rgba(11,118,110,0.24)";
+      ctx.lineWidth = 2;
+      ctx.arc(state.player.x, state.player.y, 18, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+
+    function drawGrid() {
+      ctx.strokeStyle = "rgba(15, 23, 32, 0.05)";
+      ctx.lineWidth = 1;
+      for (let x = 0; x <= canvas.width; x += 36) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, canvas.height);
+        ctx.stroke();
+      }
+      for (let y = 0; y <= canvas.height; y += 36) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(canvas.width, y);
+        ctx.stroke();
+      }
+    }
+
+    function roundRect(ctxRef, x, y, width, height, radius, fill, stroke) {
+      ctxRef.beginPath();
+      ctxRef.moveTo(x + radius, y);
+      ctxRef.lineTo(x + width - radius, y);
+      ctxRef.quadraticCurveTo(x + width, y, x + width, y + radius);
+      ctxRef.lineTo(x + width, y + height - radius);
+      ctxRef.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+      ctxRef.lineTo(x + radius, y + height);
+      ctxRef.quadraticCurveTo(x, y + height, x, y + height - radius);
+      ctxRef.lineTo(x, y + radius);
+      ctxRef.quadraticCurveTo(x, y, x + radius, y);
+      ctxRef.closePath();
+      if (fill) ctxRef.fill();
+      if (stroke) ctxRef.stroke();
+    }
+
+    function clamp(value, min, max) {
+      return Math.min(max, Math.max(min, value));
+    }
+
+    function random(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    canvas.addEventListener("mousemove", function (event) {
+      const rect = canvas.getBoundingClientRect();
+      state.pointer.x = ((event.clientX - rect.left) / rect.width) * canvas.width;
+      state.pointer.y = ((event.clientY - rect.top) / rect.height) * canvas.height;
+    });
+
+    canvas.addEventListener("mouseenter", function (event) {
+      const rect = canvas.getBoundingClientRect();
+      state.pointer.x = ((event.clientX - rect.left) / rect.width) * canvas.width;
+      state.pointer.y = ((event.clientY - rect.top) / rect.height) * canvas.height;
+    });
+
+    startButton.addEventListener("click", startTrace);
+    resetButton.addEventListener("click", function () {
+      resetTrace(false);
+    });
+
+    resetTrace(false);
+    updateRecordLabels();
+  }
 })();

@@ -550,6 +550,64 @@ main,
   color: #a04b2d;
 }
 
+.trace-card {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.75fr) minmax(0, 1.25fr);
+  gap: 1.2rem;
+  align-items: stretch;
+}
+
+.trace-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.trace-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.trace-stats span {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.42rem 0.78rem;
+  border-radius: 999px;
+  background: rgba(11, 118, 110, 0.08);
+  color: var(--accent);
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.trace-actions {
+  display: flex;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.trace-stage-wrap {
+  display: flex;
+}
+
+.trace-stage-panel {
+  width: 100%;
+  min-height: 360px;
+  padding: 0.85rem;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.94), rgba(226,241,239,0.9));
+  border: 1px solid rgba(11, 118, 110, 0.12);
+}
+
+#trace-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 18px;
+  border: 1px solid rgba(15, 23, 32, 0.08);
+  background: rgba(255,255,255,0.92);
+}
+
 .about-panel {
   padding: 2rem;
   display: grid;
@@ -620,6 +678,7 @@ main,
   .lab-entry,
   .lab-hero,
   .lab-grid,
+  .trace-card,
   .about-panel,
   .project-grid,
   .capability-grid,
