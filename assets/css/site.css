@@ -251,6 +251,77 @@ main,
   justify-content: space-between;
 }
 
+.hero-visual {
+  position: relative;
+  min-height: 240px;
+  margin-bottom: 1.5rem;
+  border-radius: 24px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at center, rgba(11, 118, 110, 0.18), transparent 48%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(226, 241, 239, 0.9));
+  border: 1px solid rgba(11, 118, 110, 0.12);
+}
+
+.visual-node {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.8rem 0.95rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(15, 23, 32, 0.08);
+  box-shadow: 0 16px 34px rgba(10, 22, 28, 0.08);
+}
+
+.visual-node span {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.visual-node strong {
+  font-size: 0.98rem;
+}
+
+.visual-node-main {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.visual-node-left {
+  top: 22%;
+  left: 10%;
+}
+
+.visual-node-right {
+  top: 20%;
+  right: 8%;
+}
+
+.visual-node-bottom {
+  bottom: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.visual-orbit {
+  position: absolute;
+  border: 1px dashed rgba(11, 118, 110, 0.22);
+  border-radius: 50%;
+}
+
+.orbit-one {
+  inset: 20px 36px 38px;
+}
+
+.orbit-two {
+  inset: 48px 82px 68px;
+}
+
 .hero-panel ul,
 .project-points {
   margin: 1rem 0 0;
@@ -313,6 +384,22 @@ main,
 .essay-list {
   display: grid;
   gap: 1rem;
+}
+
+.essay-card {
+  position: relative;
+}
+
+.essay-card::before,
+.project-card::before,
+.capability-card::before {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 4px;
+  margin-bottom: 1rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), transparent);
 }
 
 .about-panel {

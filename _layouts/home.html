@@ -4,7 +4,7 @@ layout: default
 <section class="hero-section">
   <div class="shell-inner hero-grid">
     <div class="hero-copy">
-      <p class="eyebrow">AI-native engineer portfolio</p>
+      <p class="eyebrow">AI 工程师主页</p>
       <h1>{{ page.hero_title }}</h1>
       <p class="hero-lead">{{ page.hero_lead }}</p>
 
@@ -15,19 +15,39 @@ layout: default
       </div>
 
       <div class="hero-actions">
-        <a class="button button-primary" href="#projects">Selected Projects</a>
-        <a class="button button-secondary" href="#writing">Technical Writing</a>
+        <a class="button button-primary" href="#projects">看项目</a>
+        <a class="button button-secondary" href="#writing">看文章</a>
       </div>
     </div>
 
     <aside class="hero-panel">
-      <p class="panel-label">Current Focus</p>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="visual-node visual-node-main">
+          <span>Agent</span>
+          <strong>Workflow Core</strong>
+        </div>
+        <div class="visual-node visual-node-left">
+          <span>Retrieval</span>
+          <strong>RAG Layer</strong>
+        </div>
+        <div class="visual-node visual-node-right">
+          <span>Frontend</span>
+          <strong>Product UX</strong>
+        </div>
+        <div class="visual-node visual-node-bottom">
+          <span>Delivery</span>
+          <strong>Full-Stack</strong>
+        </div>
+        <div class="visual-orbit orbit-one"></div>
+        <div class="visual-orbit orbit-two"></div>
+      </div>
+      <p class="panel-label">当前关注</p>
       <ul>
         {% for item in page.current_focus %}
           <li>{{ item }}</li>
         {% endfor %}
       </ul>
-      <p class="panel-note">Focused on shipping AI-facing products with clear UX, practical system boundaries, and end-to-end delivery awareness.</p>
+      <p class="panel-note">不把 AI 当作口号，而是把它做成有边界、有体验、有交付结果的产品能力。</p>
     </aside>
   </div>
 </section>
@@ -35,9 +55,9 @@ layout: default
 <section class="section section-projects" id="projects">
   <div class="shell-inner">
     <div class="section-head">
-      <p class="eyebrow">Selected Projects</p>
-      <h2>Projects that signal implementation ability</h2>
-      <p>Project descriptions are framed for interview readability: what was built, what mattered technically, and what kind of engineering judgment it reflects.</p>
+      <p class="eyebrow">精选项目</p>
+      <h2>先用项目证明执行力，再用细节建立可信度</h2>
+      <p>项目描述会尽量让面试的人快速抓到重点：做了什么、技术重心在哪、体现了什么样的工程判断。</p>
     </div>
 
     <div class="project-grid">
@@ -65,9 +85,9 @@ layout: default
 <section class="section section-writing" id="writing">
   <div class="shell-inner two-column">
     <div class="section-head compact">
-      <p class="eyebrow">Writing</p>
-      <h2>Technical essays with engineering judgment</h2>
-      <p>These topics are meant to feel closer to system thinking and product tradeoffs than to beginner tutorial lists.</p>
+      <p class="eyebrow">技术文章</p>
+      <h2>不是教程堆砌，而是带判断的技术表达</h2>
+      <p>文章标题会偏工程思考、系统边界和产品取舍，目的不是炫技，而是让人觉得你真的想过这些问题。</p>
     </div>
 
     <div class="essay-list">
@@ -84,8 +104,8 @@ layout: default
 <section class="section section-capabilities">
   <div class="shell-inner">
     <div class="section-head">
-      <p class="eyebrow">Capabilities</p>
-      <h2>Strengths described as delivery ability, not tool dumping</h2>
+      <p class="eyebrow">能力侧写</p>
+      <h2>不堆工具名词，而是强调能把东西做出来</h2>
     </div>
 
     <div class="capability-grid">
@@ -102,13 +122,13 @@ layout: default
 <section class="section section-about">
   <div class="shell-inner about-panel">
     <div>
-      <p class="eyebrow">About</p>
-      <h2>Engineering profile, kept grounded</h2>
+      <p class="eyebrow">关于我</p>
+      <h2>克制一点，但要让人看出工程师味道</h2>
       <p>{{ page.about_summary }}</p>
     </div>
     <div class="about-links">
-      <a class="button button-secondary" href="{{ '/about.html' | relative_url }}">More About Me</a>
-      <a class="button button-secondary" href="https://github.com/galiliya">View GitHub</a>
+      <a class="button button-secondary" href="{{ '/about.html' | relative_url }}">更多介绍</a>
+      <a class="button button-secondary" href="https://github.com/galiliya">GitHub</a>
     </div>
   </div>
 </section>

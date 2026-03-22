@@ -1,7 +1,7 @@
 title: "Galiliya"
-description: "AI-native full-stack engineer focused on agent workflows, RAG systems, and product-facing web experiences."
+description: "聚焦 AI 智能体、RAG 系统与产品化落地的全栈工程师。"
 url: "https://galiliya.github.io"
-baseurl: ""
+baseurl: "/galiliya-github-pages"
 lang: "zh-CN"
 timezone: "Asia/Shanghai"
 markdown: kramdown

@@ -1,68 +1,68 @@
 ---
 layout: home
-title: Home
-hero_title: "Building practical AI products with engineering discipline"
-hero_lead: "I focus on agent workflows, retrieval-augmented systems, and full-stack web delivery. The goal is not to sound futuristic; it is to turn AI capabilities into usable products with clear boundaries, credible UX, and maintainable implementation."
+title: 首页
+hero_title: "把 AI 能力做成真正能交付的产品"
+hero_lead: "我更关注智能体工作流、RAG 检索增强和全栈产品化落地。比起只做一个能跑的 Demo，我更在意的是：系统有没有边界、体验是不是清楚、以及它是否真的能被用户用起来。"
 hero_tags:
-  - AI Agent Workflows
-  - RAG Systems
-  - Full-Stack Delivery
-  - Frontend Craft
+  - AI 智能体工作流
+  - RAG 系统
+  - 全栈交付
+  - 前端体验
 current_focus:
-  - Designing agent flows that are useful before they look impressive
-  - Making retrieval pipelines more reliable, explainable, and product-friendly
-  - Building frontend experiences that can actually carry AI features well
+  - 让智能体流程先有用，再谈好看和花哨
+  - 让检索链路更稳定、更可解释、更适合产品化
+  - 让前端真正承载 AI 功能，而不是只放一个聊天框
 projects:
-  - title: "Intelligent Knowledge Assistant"
-    summary: "A knowledge-oriented assistant experience built around retrieval, answer composition, and a cleaner user-facing interaction layer."
+  - title: "智能知识助手"
+    summary: "围绕检索、答案组织和用户交互层重构的一类知识型助手产品，不把重点放在“像聊天”，而是放在“好用且可信”。"
     points:
-      - "Framed the product around retrieval quality and response usefulness instead of a generic chat shell."
-      - "Connected frontend interaction states with backend retrieval and answer flow so the experience stayed coherent."
-      - "Focused on making AI output feel operationally usable rather than merely technically possible."
+      - "把重点放在检索质量、回答可用性和前端承载方式，而不是单纯套一个大模型壳。"
+      - "把前端状态、检索链路和回答展示串起来，让交互更像产品而不是实验页面。"
+      - "更关注 AI 输出是否真的能被用户拿来用，而不是只是“看起来很聪明”。"
     tags:
       - RAG
-      - Search Flow
-      - Frontend
-      - API Integration
-  - title: "Workflow-Driven Service Platform"
-    summary: "A full-stack business platform centered on forms, data flow, and delivery coordination across multiple pages and interfaces."
+      - 检索链路
+      - 前端交互
+      - 接口联调
+  - title: "业务工作流平台"
+    summary: "一个偏业务交付的全栈平台，覆盖多页面表单、数据流转和接口协同，更接近真实业务系统而不是单页展示项目。"
     points:
-      - "Handled page implementation, interaction details, and interface integration with an emphasis on clear product flow."
-      - "Worked across frontend views and service interfaces to keep delivery practical from input to persistence."
-      - "Used engineering structure to reduce the gap between visible UI and actual business execution."
+      - "从页面实现、交互细节到接口联调都围绕“流程是否顺”来做，而不是只把页面堆出来。"
+      - "能从前端视图走到接口与数据落地，保证功能是完整闭环。"
+      - "把工程结构当成交付质量的一部分，减少 UI 和实际业务执行之间的断层。"
     tags:
-      - Full-Stack
-      - Dashboard
-      - CRUD Flow
-      - Delivery
-  - title: "Admin Console for Operational Content"
-    summary: "An internal-facing management interface for content updates, operational actions, and repeatable backend-connected workflows."
+      - 全栈
+      - 管理台
+      - 业务流
+      - 交付
+  - title: "运营管理后台"
+    summary: "一个偏内部使用的管理界面，用来处理内容维护、操作管理和高频后台流程，重点在清晰性与可维护性。"
     points:
-      - "Improved the clarity of high-frequency management actions through more deliberate page structure and interaction order."
-      - "Treated admin UX as an engineering problem, not just a form layout problem."
-      - "Used modular page thinking to keep growth manageable as functions expanded."
+      - "通过页面结构和操作顺序优化高频动作，让后台不只是能用，而是更顺手。"
+      - "把后台体验当作工程问题来处理，而不是简单拼表单。"
+      - "用模块化思路控制页面增长，避免功能一多就变乱。"
     tags:
-      - Admin UX
-      - Modular UI
-      - Backend Integration
-      - Maintainability
+      - 后台体验
+      - 模块化
+      - 后端协同
+      - 可维护性
 articles:
-  - title: "RAG's Real Difficulty Is Reliability, Not API Access"
-    summary: "Why retrieval quality, chunking assumptions, and answer boundaries matter more than the model demo itself."
-  - title: "From Prompt to Workflow: Agent Systems Need Engineering Boundaries"
-    summary: "Prompting is only the surface layer; useful agents depend on state, tools, failure handling, and controlled execution paths."
-  - title: "AI Product Frontends Are Not Just Chat Boxes"
-    summary: "Good AI interfaces reduce uncertainty, expose system state, and help users recover when the system is incomplete."
-  - title: "Shipping Full-Stack Features Means Designing Around Tradeoffs"
-    summary: "How interface decisions, data flow, and backend constraints shape each other in real product delivery."
+  - title: "RAG 真正难的不是接 API，而是把可靠性做出来"
+    summary: "检索质量、分块策略、答案边界和系统可信度，往往比模型演示本身更影响真实使用体验。"
+  - title: "从 Prompt 到 Workflow：智能体系统为什么需要工程边界"
+    summary: "有用的智能体不只是 prompt 写得巧，而是要有状态、工具、失败处理和清晰的执行路径。"
+  - title: "AI 产品的前端，不应该只是一层聊天框"
+    summary: "好的 AI 界面要能暴露系统状态、降低不确定性，并在系统出错时帮助用户恢复。"
+  - title: "全栈交付不是把前后端都写了，而是知道取舍在哪里"
+    summary: "真实交付里，页面设计、接口约束和开发节奏会互相牵制，真正重要的是判断力。"
 capabilities:
-  - title: "AI Agents"
-    copy: "Interested in workflows where models are only one layer of the system and product usefulness depends on orchestration, tool use, and control boundaries."
-  - title: "RAG / Retrieval"
-    copy: "More interested in retrieval quality, answer structure, and usable product outcomes than in surface-level model integration."
-  - title: "Full-Stack Delivery"
-    copy: "Comfortable thinking across frontend behavior, interface design, backend coordination, and the practical shape of shipped features."
-  - title: "Frontend Engineering"
-    copy: "Treat the interface as part of the system: hierarchy, interaction clarity, and visual discipline directly affect product trust."
-about_summary: "I have close to a year of practical development experience and care most about making software feel coherent from interface to implementation. My interests are increasingly centered on AI-native products, especially agent workflows, RAG-based systems, and the full-stack work required to turn those ideas into something usable."
+  - title: "AI 智能体"
+    copy: "更关注有状态、有工具、有边界的智能体工作流，而不是只把模型接进产品里。"
+  - title: "RAG / 检索增强"
+    copy: "比起表面上的模型接入，我更在意检索质量、答案结构和真实产品中的可用性。"
+  - title: "全栈交付"
+    copy: "能从前端行为、接口设计到后端协同一起考虑，尽量把功能做成完整闭环。"
+  - title: "前端工程"
+    copy: "把界面当作系统的一部分来看待，层级、交互清晰度和视觉节奏都会直接影响产品信任感。"
+about_summary: "有接近一年的实际开发经历，我更在意的是：一个功能从界面到实现是否统一、从体验到交付是否完整。现在的兴趣重点逐渐放在 AI 原生产品上，尤其是智能体工作流、RAG 系统，以及把这些能力真正做成产品所需要的全栈实现。"
 ---

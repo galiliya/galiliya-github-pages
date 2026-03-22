@@ -1,63 +1,63 @@
 ---
-title: Projects
+title: 项目
 layout: default
-description: "Project snapshots focused on product implementation, AI-facing systems, and full-stack delivery."
+description: "聚焦产品实现、AI 系统与全栈交付的项目页面。"
 ---
 
 <section class="page-header">
   <div class="shell-inner">
-    <p class="eyebrow">Projects</p>
-    <h1>Selected work, framed for engineering credibility</h1>
-    <p class="page-copy">These project summaries are written to show how I think about delivery: what the product needed, what the implementation emphasized, and what kind of engineering judgment the work required.</p>
+    <p class="eyebrow">项目</p>
+    <h1>用项目去证明工程判断，而不是只列技能</h1>
+    <p class="page-copy">这里的项目描述更偏“面试可读性”：让人能快速理解我做了什么、技术重点在哪，以及这些经历体现了什么样的工程意识。</p>
   </div>
 </section>
 
 <section class="section">
   <div class="shell-inner page-grid columns-2">
     <article class="content-card">
-      <p class="eyebrow">Project 01</p>
-      <h2>Intelligent Knowledge Assistant</h2>
-      <p class="meta-line">RAG / Answer Flow / Frontend Integration</p>
-      <p>Built around the idea that a useful knowledge assistant is really a retrieval and answer-structuring problem, not just a model wrapper. The implementation focused on connecting retrieval output, answer presentation, and user-facing interaction states into one coherent flow.</p>
+      <p class="eyebrow">项目 01</p>
+      <h2>智能知识助手</h2>
+      <p class="meta-line">RAG / 回答链路 / 前端承载</p>
+      <p>围绕知识检索、答案组织和用户交互层构建的一类助手型产品。重点不是把模型接上去，而是让检索结果、回答展示和用户感知能形成一个完整闭环。</p>
       <ul class="list-clean">
-        <li>Improved the usability of AI output by paying attention to retrieval relevance and answer framing.</li>
-        <li>Connected interface behavior with backend-driven knowledge flow so results felt more trustworthy and less random.</li>
-        <li>Treated product trust as part of the implementation problem, not just the design layer.</li>
+        <li>更关注 AI 输出的可用性，而不只是“模型会回答”。</li>
+        <li>把前端交互与后台检索链路连接起来，让结果更像产品而不是实验展示。</li>
+        <li>把“用户是否信任这个结果”当成实现问题的一部分来处理。</li>
       </ul>
     </article>
 
     <article class="content-card">
-      <p class="eyebrow">Project 02</p>
-      <h2>Workflow-Driven Service Platform</h2>
-      <p class="meta-line">Full-Stack / Business Flow / Delivery</p>
-      <p>A business-oriented platform with multiple pages, forms, and interface flows that had to stay practical under real usage expectations. The main value in this kind of system is consistency: input logic, state transitions, and service integration all need to line up.</p>
+      <p class="eyebrow">项目 02</p>
+      <h2>业务工作流平台</h2>
+      <p class="meta-line">全栈 / 业务流程 / 交付</p>
+      <p>一个更贴近真实业务协作的全栈平台，涉及多页面表单、数据流转和接口联动。它的难点不在单一页面，而在整个流程有没有真正跑顺。</p>
       <ul class="list-clean">
-        <li>Worked across page construction, interaction handling, and service integration.</li>
-        <li>Focused on turning business flow into something clear and operable in the interface.</li>
-        <li>Built with a delivery mindset instead of only shipping isolated pages.</li>
+        <li>从页面实现、交互设计到接口联调都参与进去，而不是只负责一层。</li>
+        <li>把业务流程翻译成更清晰的界面和更顺畅的操作路径。</li>
+        <li>用交付视角看系统，而不是把页面拆成互不相干的零散功能。</li>
       </ul>
     </article>
 
     <article class="content-card">
-      <p class="eyebrow">Project 03</p>
-      <h2>Operational Admin Console</h2>
-      <p class="meta-line">Admin UX / Backend Coordination / Maintainability</p>
-      <p>Designed for frequent operational actions where clarity matters more than decorative UI. In these systems, a good page is one that reduces confusion, makes state visible, and keeps backend-connected workflows predictable.</p>
+      <p class="eyebrow">项目 03</p>
+      <h2>运营管理后台</h2>
+      <p class="meta-line">后台体验 / 后端协同 / 可维护性</p>
+      <p>偏运营场景的管理界面，目标不是做出花哨样式，而是让高频操作更清晰、更稳定，也更容易随着业务变化继续维护。</p>
       <ul class="list-clean">
-        <li>Structured repetitive management actions into clearer, easier-to-scan modules.</li>
-        <li>Used interaction order and layout hierarchy to reduce admin-side friction.</li>
-        <li>Treated maintainability as part of the frontend problem rather than something to fix later.</li>
+        <li>把高频管理动作按模块重新整理，降低后台使用时的认知负担。</li>
+        <li>通过布局层级和交互顺序优化操作效率。</li>
+        <li>把可维护性前置考虑，不把复杂度留到后面爆炸。</li>
       </ul>
     </article>
 
     <article class="content-card">
-      <p class="eyebrow">How I Frame Projects</p>
-      <h2>What I want an interviewer to see</h2>
-      <p>I care less about presenting projects as exaggerated achievements and more about making the engineering shape visible: how a feature moves from interface to backend, where uncertainty lives, and what makes a product actually usable after the demo stage.</p>
+      <p class="eyebrow">我想传达的重点</p>
+      <h2>希望面试的人看到什么</h2>
+      <p>我不太想把项目包装成夸张的“高光战绩”，更想让人看出它背后的工程形状：一个功能怎么从界面走到后端，哪里存在不确定性，以及为什么它最终能被真正用起来。</p>
       <ul class="list-clean">
-        <li>Product-facing implementation, not only technical experimentation.</li>
-        <li>Interest in AI-native flows, retrieval systems, and usable frontend patterns.</li>
-        <li>Ability to think across UX, data flow, interfaces, and practical delivery.</li>
+        <li>偏产品落地，而不只是技术试验。</li>
+        <li>对 AI 原生流程、检索系统和前端承载方式有持续兴趣。</li>
+        <li>能把体验、数据流、接口和交付放在一起思考。</li>
       </ul>
     </article>
   </div>
