@@ -242,11 +242,13 @@
       elapsed: 0,
       stage: 1,
       player: { x: canvas.width * 0.2, y: canvas.height * 0.5, radius: 10 },
+      displayPlayer: { x: canvas.width * 0.2, y: canvas.height * 0.5, radius: 10 },
       pointer: { x: canvas.width * 0.2, y: canvas.height * 0.5 },
       blocks: [],
       lines: [],
       spawnTimer: 0,
-      lineTimer: 0
+      lineTimer: 0,
+      trail: []
     };
 
     function resetTrace(keepMessage) {
@@ -257,12 +259,15 @@
       state.stage = 1;
       state.player.x = canvas.width * 0.2;
       state.player.y = canvas.height * 0.5;
+      state.displayPlayer.x = state.player.x;
+      state.displayPlayer.y = state.player.y;
       state.pointer.x = state.player.x;
       state.pointer.y = state.player.y;
       state.blocks = [];
       state.lines = [];
       state.spawnTimer = 0;
       state.lineTimer = 0;
+      state.trail = [];
       stageLabel.textContent = "阶段 1";
       timeLabel.textContent = "存活 0.0s";
       if (!keepMessage) {
@@ -303,6 +308,20 @@
     function movePlayer(delta) {
       state.player.x = clamp(state.pointer.x, 16, canvas.width - 16);
       state.player.y = clamp(state.pointer.y, 16, canvas.height - 16);
+
+      const visualEase = Math.min(1, delta * 13);
+      state.displayPlayer.x += (state.player.x - state.displayPlayer.x) * visualEase;
+      state.displayPlayer.y += (state.player.y - state.displayPlayer.y) * visualEase;
+
+      state.trail.unshift({
+        x: state.displayPlayer.x,
+        y: state.displayPlayer.y,
+        life: 1
+      });
+      state.trail = state.trail
+        .slice(0, 10)
+        .map((point) => ({ x: point.x, y: point.y, life: point.life - delta * 2.4 }))
+        .filter((point) => point.life > 0);
     }
 
     function updateHazards(delta) {
@@ -449,18 +468,27 @@
         roundRect(ctx, block.x, block.y, block.w, block.h, 10, true, true);
       });
 
+      state.trail.forEach((point, index) => {
+        ctx.beginPath();
+        ctx.fillStyle = failed
+          ? `rgba(160,75,45,${0.12 * point.life})`
+          : `rgba(11,118,110,${0.16 * point.life})`;
+        ctx.arc(point.x, point.y, Math.max(3, 8 - index * 0.45), 0, Math.PI * 2);
+        ctx.fill();
+      });
+
       ctx.beginPath();
       ctx.fillStyle = failed ? "#a04b2d" : "#0b766e";
       ctx.shadowColor = failed ? "rgba(160,75,45,0.28)" : "rgba(11,118,110,0.26)";
       ctx.shadowBlur = 18;
-      ctx.arc(state.player.x, state.player.y, state.player.radius, 0, Math.PI * 2);
+      ctx.arc(state.displayPlayer.x, state.displayPlayer.y, state.displayPlayer.radius, 0, Math.PI * 2);
       ctx.fill();
       ctx.shadowBlur = 0;
 
       ctx.beginPath();
       ctx.strokeStyle = "rgba(11,118,110,0.24)";
       ctx.lineWidth = 2;
-      ctx.arc(state.player.x, state.player.y, 18, 0, Math.PI * 2);
+      ctx.arc(state.displayPlayer.x, state.displayPlayer.y, 18, 0, Math.PI * 2);
       ctx.stroke();
     }
 
