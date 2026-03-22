@@ -2,6 +2,7 @@
 title: 关于
 layout: default
 description: "关于 Galiliya：偏 AI 原生产品方向的全栈工程师，关注前后端协同与面向真实产品的实现。"
+permalink: /about/
 ---
 
 <section class="page-header">

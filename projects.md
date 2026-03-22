@@ -2,6 +2,7 @@
 title: 项目
 layout: default
 description: "聚焦产品实现、AI 系统与全栈交付的项目页面。"
+permalink: /projects/
 ---
 
 <section class="page-header">

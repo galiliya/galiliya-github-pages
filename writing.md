@@ -2,6 +2,7 @@
 title: 文章
 layout: default
 description: "围绕智能体、RAG、AI 产品体验与全栈交付取舍的技术文章。"
+permalink: /writing/
 ---
 
 <section class="page-header">
