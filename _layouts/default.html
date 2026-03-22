@@ -20,10 +20,10 @@
           </a>
 
           <nav class="site-nav" aria-label="Primary">
-            <a href="{{ '/' | relative_url }}">首页</a>
-            <a href="{{ '/projects/' | relative_url }}">项目</a>
-            <a href="{{ '/writing/' | relative_url }}">文章</a>
-            <a href="{{ '/about/' | relative_url }}">关于</a>
+            <a class="{% if page.url == '/' %}is-active{% endif %}" href="{{ '/' | relative_url }}">首页</a>
+            <a class="{% if page.url contains '/projects/' %}is-active{% endif %}" href="{{ '/projects/' | relative_url }}">项目</a>
+            <a class="{% if page.url contains '/writing/' %}is-active{% endif %}" href="{{ '/writing/' | relative_url }}">文章</a>
+            <a class="{% if page.url contains '/about/' %}is-active{% endif %}" href="{{ '/about/' | relative_url }}">关于</a>
           </nav>
         </div>
       </header>

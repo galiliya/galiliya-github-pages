@@ -128,14 +128,32 @@ main,
   color: inherit;
 }
 
+.site-nav a {
+  position: relative;
+  padding: 0.2rem 0;
+  font-weight: 600;
+}
+
 .site-nav a:hover,
 .footer-links a:hover,
 .text-link:hover {
   color: var(--accent);
 }
 
+.site-nav a.is-active::after,
+.site-nav a:hover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.45rem;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), rgba(11, 118, 110, 0.2));
+}
+
 .hero-section {
-  padding: 5.5rem 0 3rem;
+  padding: 4.8rem 0 3rem;
 }
 
 .hero-grid {
@@ -164,16 +182,16 @@ main,
 
 .hero-copy h1 {
   margin: 0;
-  font-size: clamp(2.6rem, 5vw, 4.9rem);
-  line-height: 0.96;
+  font-size: clamp(2.5rem, 4.7vw, 4.6rem);
+  line-height: 1.02;
   letter-spacing: -0.05em;
   max-width: 10ch;
 }
 
 .hero-lead {
-  margin: 1.4rem 0 0;
+  margin: 1.2rem 0 0;
   max-width: 62ch;
-  font-size: 1.08rem;
+  font-size: 1.02rem;
   color: var(--muted);
 }
 
@@ -222,7 +240,7 @@ main,
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.9rem 1.2rem;
+  padding: 0.86rem 1.18rem;
   border-radius: 999px;
   text-decoration: none;
   font-weight: 600;
@@ -253,7 +271,7 @@ main,
 
 .hero-visual {
   position: relative;
-  min-height: 240px;
+  min-height: 252px;
   margin-bottom: 1.5rem;
   border-radius: 24px;
   overflow: hidden;
@@ -268,7 +286,7 @@ main,
   display: flex;
   flex-direction: column;
   gap: 0.15rem;
-  padding: 0.8rem 0.95rem;
+  padding: 0.86rem 1rem;
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.88);
   border: 1px solid rgba(15, 23, 32, 0.08);
@@ -277,8 +295,7 @@ main,
 
 .visual-node span {
   font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  letter-spacing: 0.08em;
   color: var(--accent);
 }
 
@@ -328,6 +345,11 @@ main,
   padding-left: 1rem;
 }
 
+.hero-panel li {
+  margin-bottom: 0.35rem;
+  color: var(--text);
+}
+
 .section {
   padding: 1.25rem 0 3.2rem;
 }
@@ -341,7 +363,7 @@ main,
 .page-header h1 {
   margin: 0.2rem 0 0.5rem;
   font-size: clamp(1.9rem, 3vw, 3rem);
-  line-height: 1.05;
+  line-height: 1.12;
   letter-spacing: -0.04em;
 }
 
